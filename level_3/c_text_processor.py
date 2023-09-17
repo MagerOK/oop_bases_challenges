@@ -24,7 +24,7 @@ class TextProcessor:
 class AdvancedTextProcessor(TextProcessor):
     def summarize(self):
         cleared_text = re.sub(r'[^a-zA-Z\s]', '', self.text)
-        return f'Total text length: {len(self.text)}, total number of words in the text: {len(cleared_text.split())}'
+        return super().summarize() + f', total number of words in the text: {len(cleared_text.split())}'
 
 
 if __name__ == '__main__':

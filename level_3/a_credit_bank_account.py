@@ -38,3 +38,4 @@ if __name__ == '__main__':
     credit_account.decrease_balance(2000)
     print(credit_account.balance)
     print(credit_account.is_eligible_for_credit())
+    
