@@ -7,6 +7,7 @@
        Например: Total text length: 67, total number of words in the text: 10
     3. Создайте экземпляры каждого из двух классов и у каждого экземпляра вызовите все возможные методы.
 """
+import re
 
 
 class TextProcessor:
@@ -20,8 +21,20 @@ class TextProcessor:
         return f'Total text length: {len(self.text)}'
 
 
-# код писать тут
+class AdvancedTextProcessor(TextProcessor):
+    def summarize(self):
+        cleared_text = re.sub(r'[^a-zA-Z\s]', '', self.text)
+        return super().summarize() + f', total number of words in the text: {len(cleared_text.split())}'
 
 
 if __name__ == '__main__':
-    pass  # код писать тут
+    text_processor = TextProcessor('hello, ! world! (&*&)')
+    print(text_processor.to_upper())
+    print(text_processor.summarize())
+
+    print('---')
+
+    advanced_text_processor = AdvancedTextProcessor('hello, ! world! (&*&)')
+    print(advanced_text_processor.to_upper())
+    print(advanced_text_processor.summarize())
+
