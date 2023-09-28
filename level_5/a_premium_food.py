@@ -27,7 +27,7 @@ class FoodProductMixin:
 class FoodProduct(Product, FoodProductMixin):
     def get_product_info(self):
         if self.is_premium_food():
-            return f'Product title: {self.title}, price: {self.price} (Premium)'
+            return f'{super().get_product_info()} (Premium)'
         return super().get_product_info()
 
 
