@@ -28,10 +28,7 @@ class Product:
 class AlcoholProduct(Product):
     def is_available(self):
         hour = datetime.now().hour
-        if super().is_available() and 5 < hour <= 11:
-            return True
-        return False
-
+        return super().is_available() and 5 < hour <= 11
 
 if __name__ == '__main__':
     vodochka = AlcoholProduct('Vodochka', 100, 10)
