@@ -22,7 +22,7 @@ class AdminUserMixin:
         raise SystemError('It is impossible to change the email address of the administrator')
 
 
-class AdminUser(User, AdminUserMixin):
+class AdminUser(AdminUserMixin, User):
     def change_user_info(self, user: User, new_username: str, new_email: str):
         user.username = new_username
         user.email = new_email
