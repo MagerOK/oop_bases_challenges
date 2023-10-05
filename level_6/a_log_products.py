@@ -9,6 +9,10 @@
     3. Вызовите у экземпляров PremiumProduct и DiscountedProduct все возможные методы и убедитесь, что вызовы логируются.
 """
 
+class PrintLoggerMixin:
+    def log(self, message: str) -> None:
+        print(f"Log: {message}")
+
 
 class Product:
     def __init__(self, title: str, price: float):
@@ -19,24 +23,34 @@ class Product:
         return f'Product {self.title} with price {self.price}'
 
 
-class PremiumProduct(Product):
+class PremiumProduct(PrintLoggerMixin, Product):
     def increase_price(self):
+        self.log(f'Price increased from {self.price} to {self.price * 1.2}')
         self.price *= 1.2
 
     def get_info(self):
         base_info = super().get_info()
+        self.log(f'Premium product info: {base_info}')
         return f'{base_info} (Premium)'
 
 
-class DiscountedProduct(Product):
+class DiscountedProduct(PrintLoggerMixin, Product):
     def increase_price(self):
+        self.log(f'Price decreased from {self.price} to {self.price / 1.2}')
         self.price /= 1.2
 
     def get_info(self):
         base_info = super().get_info()
+        self.log(f'Discounted product info: {base_info}')
         return f'{base_info} (Discounted)'
 
 
 if __name__ == '__main__':
-    pass
+    product = PremiumProduct('Banana', 100.1)
+    product.increase_price()
+    print(product.get_info())
+
+    product = DiscountedProduct('Slama', 250.2)
+    product.increase_price()
+    print(product.get_info())
 
