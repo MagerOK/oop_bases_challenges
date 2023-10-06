@@ -13,6 +13,11 @@ class User:
         self.email = email
         self.is_admin = is_admin
 
+    def __str__(self):
+        return f'User ID: {self.user_id}, Email: {self.email}'
+
+    def __repr__(self):
+        return f'User(user_id={self.user_id}, email={self.email}, is_admin={self.is_admin})'
 
 if __name__ == '__main__':
     user_instance = User(user_id=3, email='dev@yandex.ru', is_admin=True)
