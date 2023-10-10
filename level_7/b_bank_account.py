@@ -19,8 +19,13 @@ class BankAccount:
         self.balance = balance
 
     def decrease_balance(self, amount: float):
-        pass  # писать код тут
+        if self.balance - amount < self.min_balance:
+            raise ValueError('The balance cannot be less than the minimum')
+        self.balance -= amount
 
 
 if __name__ == '__main__':
-    pass  # писать код тут
+    wallet = BankAccount('John', 100)
+    wallet.decrease_balance(10)
+    print(wallet.balance)
+    wallet.decrease_balance(210)
